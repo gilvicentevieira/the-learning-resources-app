@@ -1,34 +1,48 @@
 <template> 
   <form @submit.prevent="submitForm">
     <label>Title</label>
-    <input type="text" v-model="formData['title']" required>
+    <input type="text" v-model="formData['title']">
     <label>Description</label>
-    <textarea rows="4" v-model="formData['description']" required></textarea>
+    <textarea rows="4" v-model="formData['description']"></textarea>
     <label type="text">Link</label>
-    <input type="text" v-model="formData['link']" required/>
+    <input type="text" v-model="formData['link']"/>
     <button>Add Resource</button>
     <teleport to="body">
-      <dialog ref="error-dialog">
-        <h1>This is a dialog</h1>
-      </dialog>
+      <form-dialog :content="dialogContent" :teste="teste"></form-dialog>
     </teleport>
   </form>
 </template>
 
 <script>
+import FormDialog from './FormDialog.vue'
+
+const errorTitle = 'Invalid Input'
+const errorDescription = 'Unfortunately, at least one input value is invalid. \n Please check all inputs and make sure you enter at least a few characters into each input field'
+
+const successTitle = 'Success !'
+const successDescription = 'New resource added successfully !'
 
 export default {
+  components: {'form-dialog': FormDialog},
   emits: ['submit-res'],
   data(){
     return {
-      formData: {}
+      formData: {},
+      dialogContent: {},
     }
   },
   methods: {
     submitForm(){
-      console.log("submitForm method")
+      if(!this.formData.title || !this.formData.description || !this.formData.link){
+        this.dialogContent = {title: errorTitle, description: errorDescription}
+        return
+      }
+      this.dialogContent = {title: successTitle, description: successDescription}
       this.$emit('submit-res', this.formData)
       this.formData = {}
+    },
+    closeModal(){
+      this.$refs.errorDialog.close()
     }
   }
 }
@@ -89,5 +103,33 @@ export default {
 
   button:active{
     background: rgb(12, 12, 35);
+  }
+  dialog{
+    margin: auto;
+    padding: 0px;
+    border: none;
+    border-radius: 10px;
+  }
+
+  dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+
+  header{
+    background-color: rgb(114, 32, 81);
+    height: 7vh;
+    color: white;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  main {
+    padding: 15px;
+  }
+
+  p{
+    padding: 10px;
   }
 </style>
