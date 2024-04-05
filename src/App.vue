@@ -21,4 +21,4 @@ export default {
   margin: 0;
 }
 
-</style>./components/TheHeader.vue
+</style>
