@@ -6,9 +6,11 @@
     <textarea rows="4" v-model="formData['description']"></textarea>
     <label type="text">Link</label>
     <input type="text" v-model="formData['link']"/>
-    <button>Add Resource</button>
+    <div>
+      <the-button active>Add Resource</the-button>  
+    </div>
     <teleport to="body">
-      <form-dialog :content="dialogContent" :teste="teste"></form-dialog>
+      <form-dialog :content="dialogContent"></form-dialog>
     </teleport>
   </form>
 </template>
@@ -85,25 +87,6 @@ export default {
     border: 1px solid rgb(161, 84, 162);
     outline: none;
   }
-
-  button {
-    width: 10vw;
-    margin-top: 10px;
-    font-size: 20px;
-    background: rgb(27, 27, 82);
-    color: white;
-    border-style: none;
-    border-radius: 2px;
-    padding: 10px;
-  }
-
-  button:hover{
-    background: rgb(21, 21, 67);
-  }
-
-  button:active{
-    background: rgb(12, 12, 35);
-  }
   dialog{
     margin: auto;
     padding: 0px;
@@ -131,5 +114,9 @@ export default {
 
   p{
     padding: 10px;
+  }
+
+  div{
+    margin-top: 15px;
   }
 </style>
