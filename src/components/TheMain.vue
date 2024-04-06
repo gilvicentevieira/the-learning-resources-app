@@ -25,11 +25,16 @@ export default {
   },
   data(){
     return {
-      activeTab: 'add',
+      activeTab: 'stored',
       resources: [
         {title: 'Official Vue guide', description: 'The official Vue.js documentation.', link: 'https://vuejs.org/'},
         {title: 'Official Angular guide', description: 'The official Angular documentation.', link: 'https://angular.io/'}
       ]
+    }
+  },
+  provide(){
+    return {
+      switchTab: ()=>this.activeTab = 'stored'
     }
   },
   methods: {
