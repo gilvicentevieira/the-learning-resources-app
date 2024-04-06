@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <h1>{{res.title}}</h1>
+  <div class="container">
+    <div class="first-row">
+      <h1>{{res.title}}</h1>
+      <the-button @click="$emit('delete-res', res.link)">Delete</the-button>
+    </div>
     <p>{{ res.description }}</p>
     <a :href="res.link" target="_blank">View Resource</a>
-    <label @click="$emit('delete-res', res.link)">Delete</label>
   </div>
 </template>
 
@@ -17,7 +19,7 @@ export default {
 
 <style scoped>
  
-  div{
+  .container{
     position: relative;
     padding: 10px;
     height: 12vh;
@@ -28,8 +30,14 @@ export default {
     border-radius: 10px;
   }
 
-  div:hover {
+  .container:hover {
     background: rgb(235, 235, 235);
+  }
+
+  .first-row{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
 
   h1 {
@@ -42,18 +50,6 @@ export default {
     text-decoration: none;
     color: orange;
     margin-top: 5px;
-  }
-
-  label {
-    color: rgb(27, 27, 82);
-    position: absolute;
-    padding: 10px;
-    top: 15px;
-    left: 90%;
-  }
-
-  label:hover {
-    background-color: rgb(207, 151, 198);
   }
 
 </style>
