@@ -5,7 +5,9 @@
     </header>
     <main>
       <p>{{content.description}}</p>
-      <button @click="closeModal">Okay</button>
+      <div>
+        <the-button active @click="closeModal">Okay</the-button>
+      </div>
     </main>
   </dialog>
 </template>
@@ -14,9 +16,13 @@
 
 export default {
   props: ['content', 'teste'],
+  inject: ['switchTab'],
   methods: {
     closeModal(){
       this.$refs.errorDialog.close()
+      if(this.content.title === 'Success !'){
+        this.switchTab()
+      }
     }
   },
   beforeUpdate(){
@@ -27,6 +33,7 @@ export default {
 
 <style scoped>
   dialog{
+    width: 60vw;
     margin: auto;
     padding: 0px;
     border: none;
@@ -55,14 +62,7 @@ export default {
     padding: 10px;
   }
 
-  button {
-    width: 10vw;
-    margin-top: 10px;
-    font-size: 20px;
-    background: rgb(27, 27, 82);
-    color: white;
-    border-style: none;
-    border-radius: 2px;
-    padding: 10px;
+  div{
+    margin-top: 15px;
   }
 </style>
