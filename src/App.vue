@@ -1,5 +1,5 @@
 <template>
-  <the-header></the-header>
+  <the-header>RememberMe</the-header>
   <the-main></the-main>
 </template>
 
